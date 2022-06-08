@@ -17,6 +17,9 @@ public class Vector<T>{
         }
 
     }
+    public Vector(Vector<T> vector) throws IllegalArgumentException{
+        vector_values = vector.vector_values;
+    }
 
     public float calcMagnitude(){
         double sum = 0;
@@ -130,15 +133,19 @@ public class Vector<T>{
         return sb.toString();
     }
 
-    public Object getTypeOfObecjt() {
-        return type.getName();
-    }
-
     public float[] getValues() {
         float[] values = new float[vector_values.size()];
         for (int i = 0; i < vector_values.size(); i++) {
             values[i] = Float.parseFloat(vector_values.get(i).toString());
         }
         return values;
+    }
+
+    public float sumVectorElements() {
+        float sum = 0;
+        for (T x : vector_values) {
+            sum += Float.parseFloat(x.toString());
+        }
+        return sum;
     }
 }

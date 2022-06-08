@@ -11,12 +11,6 @@ public class Matrix {
         }
     }
 
-    public Matrix(int rows, int columns) throws IllegalArgumentException {
-        for (int i = 0; i < rows; i++) {
-            this.matrirx_lines.add(new Vector(columns));
-        }
-    }
-
     public void addVector(Vector vector){
         this.matrirx_lines.add(vector);
     }
@@ -76,10 +70,6 @@ public class Matrix {
         return resultMatrix;
     }
 
-    public int sizeOfAllElement() {
-        return this.getValues().length;
-    }
-
 
     public Matrix getTransponseMatrix() {
         Matrix new_matrix = new Matrix();
@@ -97,13 +87,34 @@ public class Matrix {
         return this.matrirx_lines.get(0).size() == m.matrirx_lines.size();
     }
 
+    public Matrix additionalMatrix(Matrix matrix) throws IllegalArgumentException {
+        if (this.matrirx_lines.size() != matrix.matrirx_lines.size() || this.matrirx_lines.get(0).size() != matrix.matrirx_lines.get(0).size()) {
+            throw new IllegalArgumentException("Dimension of matrix one must be equal to dimension of matrix two");
+        }
+        Matrix new_matrix = new Matrix();
+        int i = 0;
+        for (Vector vector: this.matrirx_lines) {
+            new_matrix.addVector(new Vector(vector.calcAddition(matrix.matrirx_lines.get(i))));
+            i++;
+        }
+        return new_matrix;
+    }
+
+    public float calcSum(){
+        float sum = 0;
+        for (Vector vector: this.matrirx_lines) {
+            sum += vector.sumVectorElements();
+        }
+        return sum;
+    }
+
     @Override
     public String toString() {
-        // TODO use Matrix class to print your matrix
         StringBuilder sb = new StringBuilder();
         for (Vector vector : this.matrirx_lines) {
             sb.append(vector.toString() + "\n");
         }
+        sb.replace(sb.length() - 1, sb.length(), "");
         return sb.toString();
     }
 }
