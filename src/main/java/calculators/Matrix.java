@@ -1,7 +1,10 @@
 package calculators;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.ArrayList;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Matrix {
     ArrayList<Vector> matrirx_lines = new ArrayList<>();
 
