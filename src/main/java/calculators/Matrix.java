@@ -17,12 +17,6 @@ public class Matrix {
         }
     }
 
-    public Matrix(int rows, int columns, float... values) throws IllegalArgumentException {
-        for (int i = 0; i < rows; i++) {
-            this.matrirx_lines.add(new Vector(values));
-        }
-    }
-
     public void addVector(Vector vector){
         this.matrirx_lines.add(vector);
     }
@@ -33,16 +27,6 @@ public class Matrix {
         for (int i = 0; i < vector.size(); i++) {
             this.matrirx_lines.get(i).addElement(vector.vector_values.get(i));
         }
-    }
-
-    public Matrix getInverse(){
-        Matrix resultMatrix = new Matrix(this.matrirx_lines.size(), this.matrirx_lines.get(0).size());
-        for (int i = 0; i < this.matrirx_lines.size(); i++) {
-            for (int j = 0; j < this.matrirx_lines.get(0).size(); j++) {
-                resultMatrix.matrirx_lines.get(i).vector_values.set(j, this.matrirx_lines.get(i).vector_values.get(j));
-            }
-        }
-        return resultMatrix;
     }
 
     public float[] getValues() {
@@ -58,11 +42,11 @@ public class Matrix {
     }
 
     public Matrix multiplication(Matrix matrix) throws IllegalArgumentException {
-        if (this.matrirx_lines.get(0).size() != matrix.matrirx_lines.size()) {
-            throw new IllegalArgumentException("Size of matrix need to be the same!");
+        if (!canMultiplicate(matrix)) {
+            throw new IllegalArgumentException("mxn * nxk, bad matrix rows and columns!");
         }
 
-        Matrix resultMatrix = new Matrix(this.matrirx_lines.size(), matrix.matrirx_lines.get(0).size());
+        Matrix resultMatrix = new Matrix();
 
         assert matrirx_lines.get(0).size() == matrix.matrirx_lines.size() : "width of matrix one must be equal to height of matrix two";
         double[][] product = new double[matrirx_lines.size()][matrix.matrirx_lines.get(0).size()];
@@ -107,6 +91,10 @@ public class Matrix {
             new_matrix.addVector(new_vector);
         }
         return new_matrix;
+    }
+
+    public boolean canMultiplicate(Matrix m){
+        return this.matrirx_lines.get(0).size() == m.matrirx_lines.size();
     }
 
     @Override
