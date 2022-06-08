@@ -1,12 +1,9 @@
 package calculators;
-
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Vector<T>{
-    public List<T> list = new ArrayList<>();
+    public List<T> vector_values = new ArrayList<>();
 
     private Class<T> type;
 
@@ -16,14 +13,14 @@ public class Vector<T>{
         type = (Class<T>) xs.getClass().getComponentType();
 
         for(T x : xs){
-            this.add(x);
+            this.addElement(x);
         }
 
     }
 
     public float calcMagnitude(){
         double sum = 0;
-        for(T x : list){
+        for(T x : vector_values){
             sum += Math.pow(Double.parseDouble(x.toString()), 2);
         }
         return (float) Math.sqrt(sum);
@@ -37,7 +34,7 @@ public class Vector<T>{
         Vector<Float> resultVector = new Vector<>();
         for (int i = 0; i < vector.size(); i++) {
             try {
-                resultVector.add (Float.parseFloat(this.list.get(i).toString()) - Float.parseFloat(vector.list.get(i).toString()));
+                resultVector.addElement(Float.parseFloat(this.vector_values.get(i).toString()) - Float.parseFloat(vector.vector_values.get(i).toString()));
             }
             catch (Exception ignore){}
         }
@@ -53,7 +50,7 @@ public class Vector<T>{
         Vector<Float> resultVector = new Vector<>();
         for (int i = 0; i < vector.size(); i++) {
             try {
-                resultVector.add (Float.parseFloat(this.list.get(i).toString()) + Float.parseFloat(vector.list.get(i).toString()));
+                resultVector.addElement(Float.parseFloat(this.vector_values.get(i).toString()) + Float.parseFloat(vector.vector_values.get(i).toString()));
             }
             catch (Exception ignore){}
         }
@@ -65,7 +62,7 @@ public class Vector<T>{
         Vector<Float> resultVector = new Vector<>();
         for (int i = 0; i < this.size(); i++) {
             try {
-                resultVector.add (Float.parseFloat(this.list.get(i).toString()) / this.calcMagnitude());
+                resultVector.addElement(Float.parseFloat(this.vector_values.get(i).toString()) / this.calcMagnitude());
             }
             catch (Exception ignore){}
         }
@@ -77,7 +74,7 @@ public class Vector<T>{
         Vector<Float> resultVector = new Vector<>();
         for (int i = 0; i < this.size(); i++) {
             try {
-                resultVector.add ((float) (Float.parseFloat(this.list.get(i).toString()) * scalar));
+                resultVector.addElement((float) (Float.parseFloat(this.vector_values.get(i).toString()) * scalar));
             }
             catch (Exception ignore){}
         }
@@ -100,7 +97,7 @@ public class Vector<T>{
         float sum = 0;
         for (int i = 0; i < vector.size(); i++) {
             try {
-                sum += Float.parseFloat(this.list.get(i).toString()) * Float.parseFloat(vector.list.get(i).toString());
+                sum += Float.parseFloat(this.vector_values.get(i).toString()) * Float.parseFloat(vector.vector_values.get(i).toString());
             }
             catch (Exception ignore){}
         }
@@ -108,22 +105,22 @@ public class Vector<T>{
         return sum;
     }
 
-    public void add(T value) throws IllegalArgumentException{
+    public void addElement(T value) throws IllegalArgumentException{
         if(!(value instanceof Integer || value instanceof Float || value instanceof Double)){
             throw new IllegalArgumentException("T must be Integer, Float or double!");
         }
-        list.add(value);
+        vector_values.add(value);
     }
 
     public int size() {
-        return list.size();
+        return vector_values.size();
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("<");
-        for (T d: list) {
+        for (T d: vector_values) {
             sb.append(d).append(", ");
         }
         if (sb.length() > 1) {
@@ -135,5 +132,13 @@ public class Vector<T>{
 
     public Object getTypeOfObecjt() {
         return type.getName();
+    }
+
+    public float[] getValues() {
+        float[] values = new float[vector_values.size()];
+        for (int i = 0; i < vector_values.size(); i++) {
+            values[i] = Float.parseFloat(vector_values.get(i).toString());
+        }
+        return values;
     }
 }
