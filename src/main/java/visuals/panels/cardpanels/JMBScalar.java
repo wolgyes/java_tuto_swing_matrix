@@ -123,15 +123,15 @@ public class JMBScalar extends JPanel {
         // Split the vector into an array of strings
         String[] vectorArray = vector.split(",");
 
-        Vector<Integer> vectorObject = new Vector<>();
-        int scalarNum = -1;
+        Vector<Float> vectorObject = new Vector<>();
+        float scalarNum = -1;
 
         // Convert the strings to integers
         try {
             for (String s : vectorArray) {
-                vectorObject.add(Integer.parseInt(s));
+                vectorObject.addElement(Float.parseFloat(s));
             }
-            scalarNum = Integer.parseInt(scalar);
+            scalarNum = Float.parseFloat(scalar);
         }catch (NumberFormatException e){
             outputLabel.setText("Please enter a valid vector");
             return;

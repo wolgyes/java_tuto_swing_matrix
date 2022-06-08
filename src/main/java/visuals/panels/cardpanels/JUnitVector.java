@@ -95,10 +95,10 @@ public class JUnitVector extends JPanel {
         // Split the vector into an array of strings
         String[] vectorArray = vector.split(",");
 
-        Vector<Integer> vectorObject = new Vector<>();
+        Vector<Float> vectorObject = new Vector<>();
         for (int i = 0; i < vectorArray.length; i++){
             try {
-                vectorObject.add(Integer.parseInt(vectorArray[i]));
+                vectorObject.addElement(Float.parseFloat(vectorArray[i]));
             }catch (NumberFormatException e){
                 outputLabel.setText("Please enter a valid vector");
                 return;

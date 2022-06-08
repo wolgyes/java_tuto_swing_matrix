@@ -131,16 +131,16 @@ public class JDotProduct extends JPanel {
         String[] vectorArray = vector.split(",");
         String[] vector2Array = vector2.split(",");
 
-        Vector<Integer> vectorObject = new Vector<>();
-        Vector<Integer> vector2Object = new Vector<>();
+        Vector<Float> vectorObject = new Vector<>();
+        Vector<Float> vector2Object = new Vector<>();
 
         // Convert the strings to integers
         try {
             for (String s : vectorArray) {
-                vectorObject.add(Integer.parseInt(s));
+                vectorObject.addElement(Float.parseFloat(s));
             }
             for (String s : vector2Array) {
-                vector2Object.add(Integer.parseInt(s));
+                vector2Object.addElement(Float.parseFloat(s));
             }
         }catch (NumberFormatException e){
             outputLabel.setText("Please enter a valid vector");
