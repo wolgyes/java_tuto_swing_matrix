@@ -18,7 +18,6 @@ public class JMagnitude extends JPanel {
         super();
 
         setBounds(x, y, width, height);
-        setBackground(new Color(34, 189, 245, 107));
 
         // Set the layout
         setLayout(null);
