@@ -1,6 +1,10 @@
 package visuals.panels.cardpanels;
 
 import calculators.Vector;
+import outputmanaggers.OperationType;
+import outputmanaggers.ResultInputs;
+import outputmanaggers.XmlManagger;
+import outputmanaggers.outputs.OutputNum;
 import visuals.MainGUI;
 
 import javax.swing.*;
@@ -146,6 +150,17 @@ public class JDotProduct extends JPanel {
             return;
         }
 
+        XmlManagger.om.outputNums.add(
+                new OutputNum(
+                        new ResultInputs(
+                                vectorObject,
+                                vector2Object
+                        ),
+                        OperationType.dotProduct,
+                        vectorObject.calcDotProduct(vector2Object)
+                )
+        );
+        XmlManagger.xmlWrite();
         outputLabel.setText("Result: " + vectorObject.calcDotProduct(vector2Object));
     }
 }

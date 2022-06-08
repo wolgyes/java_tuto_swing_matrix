@@ -2,6 +2,10 @@ package visuals.panels.cardpanels.matrixcardpanels;
 
 import calculators.Matrix;
 import calculators.Vector;
+import outputmanaggers.OperationType;
+import outputmanaggers.ResultInputs;
+import outputmanaggers.XmlManagger;
+import outputmanaggers.outputs.OutputMatrix;
 import visuals.MainGUI;
 import visuals.panels.cardpanels.matrixcardpanels.enums.MatrixSize;
 
@@ -84,6 +88,17 @@ public class JMatrixMultiplication extends JPanel {
         }
 
         if(matrix1.canMultiplicate(matrix2)){
+            XmlManagger.om.matrixCalcs.add(
+                    new OutputMatrix(
+                            new ResultInputs(
+                                    matrix1,
+                                    matrix2
+                            ),
+                            OperationType.multiplication,
+                            matrix1.multiplication(matrix2)
+                    )
+            );
+            XmlManagger.xmlWrite();
             outputLabel.setText(matrix1.multiplication(matrix2).toString());
         }else{
             outputLabel.setText("Cannot multiply these matrices");

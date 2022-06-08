@@ -1,6 +1,11 @@
 package visuals.panels.cardpanels;
 
 import calculators.Vector;
+import outputmanaggers.OperationType;
+import outputmanaggers.ResultInputs;
+import outputmanaggers.XmlManagger;
+import outputmanaggers.outputs.OutputNum;
+import outputmanaggers.outputs.OutputVector;
 import visuals.MainGUI;
 
 import javax.swing.*;
@@ -104,6 +109,17 @@ public class JMagnitude extends JPanel {
                 return;
             }
         }
+
+        XmlManagger.om.outputNums.add(
+                new OutputNum(
+                        new ResultInputs(
+                                vectorObject
+                        ),
+                        OperationType.magnitude,
+                        vectorObject.calcMagnitude()
+                )
+        );
+        XmlManagger.xmlWrite();
         outputLabel.setText("Result: " + vectorObject.calcMagnitude());
     }
 }

@@ -1,9 +1,14 @@
 package visuals.panels.cardpanels;
 
 import calculators.Vector;
+import outputmanaggers.OperationType;
+import outputmanaggers.ResultInputs;
+import outputmanaggers.XmlManagger;
+import outputmanaggers.outputs.OutputVector;
 import visuals.MainGUI;
 
 import javax.swing.*;
+import javax.xml.transform.Result;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -136,6 +141,18 @@ public class JMBScalar extends JPanel {
             return;
         }
 
+        ResultInputs resultInputs = new ResultInputs();
+        resultInputs.inVectors.add(vectorObject);
+        resultInputs.inNums.add(scalarNum);
+
+        XmlManagger.om.vectorCalcs.add(
+                new OutputVector(
+                        resultInputs,
+                        OperationType.multiplyByScalar,
+                        vectorObject.multiplyByScalar(scalarNum)
+                )
+        );
+        XmlManagger.xmlWrite();
         outputLabel.setText("Result: " + vectorObject.multiplyByScalar(scalarNum));
     }
 }

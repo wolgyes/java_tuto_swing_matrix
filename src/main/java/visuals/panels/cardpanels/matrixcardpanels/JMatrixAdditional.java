@@ -2,6 +2,10 @@ package visuals.panels.cardpanels.matrixcardpanels;
 
 import calculators.Matrix;
 import calculators.Vector;
+import outputmanaggers.OperationType;
+import outputmanaggers.ResultInputs;
+import outputmanaggers.XmlManagger;
+import outputmanaggers.outputs.OutputMatrix;
 import visuals.MainGUI;
 import visuals.panels.cardpanels.matrixcardpanels.enums.MatrixSize;
 
@@ -79,6 +83,17 @@ public class JMatrixAdditional extends JPanel {
             matrix1 = getMatrixFromTable(matrixTable1);
             matrix2 = getMatrixFromTable(matrixTable2);
 
+            XmlManagger.om.matrixCalcs.add(
+                    new OutputMatrix(
+                            new ResultInputs(
+                                    matrix1,
+                                    matrix2
+                            ),
+                            OperationType.addition,
+                            matrix1.additionalMatrix(matrix2)
+                    )
+            );
+            XmlManagger.xmlWrite();
             outputLabel.setText(matrix1.additionalMatrix(matrix2).toString());
         }catch (Exception e){
             outputLabel.setText("The Matrix is not valid!\nThe two matrix need to be the same size.");

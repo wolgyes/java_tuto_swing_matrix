@@ -1,6 +1,10 @@
 package visuals.panels.cardpanels;
 
 import calculators.Vector;
+import outputmanaggers.OperationType;
+import outputmanaggers.ResultInputs;
+import outputmanaggers.XmlManagger;
+import outputmanaggers.outputs.OutputVector;
 import visuals.MainGUI;
 
 import javax.swing.*;
@@ -103,6 +107,17 @@ public class JUnitVector extends JPanel {
                 return;
             }
         }
+
+        XmlManagger.om.vectorCalcs.add(
+                new OutputVector(
+                        new ResultInputs(
+                                vectorObject
+                        ),
+                        OperationType.findUnitVector,
+                        vectorObject.findUnitVector()
+                )
+        );
+        XmlManagger.xmlWrite();
         outputLabel.setText("Result: " + vectorObject.findUnitVector());
     }
 }

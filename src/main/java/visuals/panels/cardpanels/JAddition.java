@@ -1,6 +1,11 @@
 package visuals.panels.cardpanels;
 
 import calculators.Vector;
+import outputmanaggers.OperationType;
+import outputmanaggers.ResultInputs;
+import outputmanaggers.XmlManagger;
+import outputmanaggers.outputs.OutputNum;
+import outputmanaggers.outputs.OutputVector;
 import visuals.MainGUI;
 
 import javax.swing.*;
@@ -146,6 +151,17 @@ public class JAddition extends JPanel {
             return;
         }
 
+        XmlManagger.om.vectorCalcs.add(
+                new OutputVector(
+                        new ResultInputs(
+                                vectorObject,
+                                vector2Object
+                        ),
+                        OperationType.addition,
+                        vectorObject.calcAddition(vector2Object)
+                )
+        );
+        XmlManagger.xmlWrite();
         outputLabel.setText("Result: " + vectorObject.calcAddition(vector2Object));
     }
 }

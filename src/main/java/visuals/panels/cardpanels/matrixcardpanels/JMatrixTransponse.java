@@ -2,6 +2,11 @@ package visuals.panels.cardpanels.matrixcardpanels;
 
 import calculators.Matrix;
 import calculators.Vector;
+import outputmanaggers.OperationType;
+import outputmanaggers.ResultInputs;
+import outputmanaggers.XmlManagger;
+import outputmanaggers.outputs.OutputMatrix;
+import outputmanaggers.outputs.OutputNum;
 import visuals.MainGUI;
 import visuals.panels.cardpanels.matrixcardpanels.enums.MatrixSize;
 
@@ -74,6 +79,16 @@ public class JMatrixTransponse extends JPanel {
             return;
         }
 
+        XmlManagger.om.matrixCalcs.add(
+                new OutputMatrix(
+                        new ResultInputs(
+                                matrix1
+                        ),
+                        OperationType.transpose,
+                        matrix1.getTransponseMatrix()
+                )
+        );
+        XmlManagger.xmlWrite();
         outputLabel.setText(matrix1.getTransponseMatrix().toString());
     }
 

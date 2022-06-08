@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ResultInputs {
-    private ArrayList<Matrix> inMatrixs;
-    private ArrayList<Vector> inVectors;
-    private ArrayList<Float> inNums;
+    public ArrayList<Matrix> inMatrixs;
+    public ArrayList<Vector> inVectors;
+    public ArrayList<Float> inNums;
 
     public ResultInputs() {
         this.inMatrixs = new ArrayList<>();

@@ -2,6 +2,11 @@ package visuals.panels.cardpanels.matrixcardpanels;
 
 import calculators.Matrix;
 import calculators.Vector;
+import outputmanaggers.OperationType;
+import outputmanaggers.ResultInputs;
+import outputmanaggers.XmlManagger;
+import outputmanaggers.outputs.OutputMatrix;
+import outputmanaggers.outputs.OutputNum;
 import visuals.MainGUI;
 import visuals.panels.cardpanels.matrixcardpanels.enums.MatrixSize;
 
@@ -72,6 +77,17 @@ public class JMatrixSum extends JPanel {
             outputLabel.setText("The Matrix is not valid");
             return;
         }
+
+        XmlManagger.om.outputNums.add(
+                new OutputNum(
+                        new ResultInputs(
+                                matrix1
+                        ),
+                        OperationType.sum,
+                        matrix1.calcSum()
+                )
+        );
+        XmlManagger.xmlWrite();
         outputLabel.setText(matrix1.calcSum() + "");
     }
 

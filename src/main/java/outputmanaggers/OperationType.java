@@ -5,5 +5,5 @@ import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public enum OperationType {
-    sum, addition, subtraction, magnitude, multiplyByScalar, findUnitVector, dotProduct, multiplication, transpose,
+    sum, addition, subtraction, magnitude, multiplyByScalar, findUnitVector, dotProduct, multiplication, transpose, projection
 }
