@@ -8,6 +8,7 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Vector<T>{
+    @XmlElement(name = "vector_value")
     public List<T> vector_values = new ArrayList<>();
 
     private Class<T> type;
